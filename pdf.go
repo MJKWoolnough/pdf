@@ -1,49 +1,27 @@
 package pdf
 
-import (
-	"image"
-	"image/color"
-)
+import "image"
 
 type Page struct {
-	Width, Height   int
-	Header, Footer  Block
-	BackgroundColor color.Color
-	BackgroundImage image.Image
+	Style
+	Header, Footer Block
+	Contents       []interface{}
 }
-
-type Flow uint8
-
-const (
-	FlowNormal Flow = iota
-	FlowAround
-	FlowOver
-	FlowUnder
-)
 
 type Block struct {
-	Flow            Flow
-	BackgroundColor color.Color
-	BackgroundImage image.Image
-	Contents        []interface{}
+	Style
+	Contents []interface{}
 }
 
-type Align uint8
+type Inline struct {
+	Style
+	Contents []interface{}
+}
 
-const (
-	AlignLeft Align = iota
-	AlighCenter
-	AlignRight
-	AlighFull
-)
+type Text string
 
-type Text struct {
-	Font                    string
-	Size                    uint8
-	Color                   color.Color
-	Bold, Italic, Underline bool
-	Alignment               Align
-	Data                    string
+type Image struct {
+	image.Image
 }
 
 type Link struct {
