@@ -1,4 +1,4 @@
-package pdf
+package pdf // import "vimagination.zapto.org/pdf"
 
 import "image"
 
